@@ -1,4 +1,4 @@
-package com.mycompany.controller;
+package com.mycompany.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,9 +15,19 @@ public class AppController {
         return "home";
     }
 
-    @RequestMapping(value = {"/products"}, method = RequestMethod.GET)
-    public String productsPage(ModelMap model) {
-        return "products";
+    @RequestMapping(value = {"/active"}, method = RequestMethod.GET)
+    public String activePage(ModelMap model) {
+        return "active";
+    }
+
+    @RequestMapping(value = {"/all"}, method = RequestMethod.GET)
+    public String allPage(ModelMap model) {
+        return "all";
+    }
+
+    @RequestMapping(value = {"/systems"}, method = RequestMethod.GET)
+    public String systemsPage(ModelMap model) {
+        return "systems";
     }
 
     @RequestMapping(value = {"/contactus"}, method = RequestMethod.GET)

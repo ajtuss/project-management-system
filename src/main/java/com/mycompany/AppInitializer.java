@@ -1,5 +1,6 @@
-package com.mycompany.configuration;
+package com.mycompany;
 
+import com.mycompany.configuration.AppConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
