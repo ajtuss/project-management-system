@@ -4,11 +4,11 @@
 			<a class="navbar-brand" href="#">Project Management System</a>
 		</div>
 		<ul class="nav navbar-nav">
-			<li class="active"><a href="#">Home</a></li>
-			<li><a href="#">Aktywne umowy</a></li>
-			<li><a href="#">Wszystkie umowy</a></li>
-			<li><a href="#">Systemy</a></li>
-			<li><a href="#">O aplikacji</a></li>
+			<li class="active"><a href="/">Home</a></li>
+			<li><a href="/active">Aktywne umowy</a></li>
+			<li><a href="/all">Wszystkie umowy</a></li>
+			<li><a href="/systems">Systemy</a></li>
+			<li><a href="/contactus">O aplikacji</a></li>
 		</ul>
 	</div>
 </nav>

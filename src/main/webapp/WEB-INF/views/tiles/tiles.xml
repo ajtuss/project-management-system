@@ -18,11 +18,23 @@
        <put-attribute name="body" value="/WEB-INF/views/pages/home.jsp" />  
    </definition>  
 
-   <!-- Product Page -->
-   <definition name="products" extends="base-definition">  
-       <put-attribute name="title" value="Products" />  
-       <put-attribute name="body" value="/WEB-INF/views/pages/products.jsp" />  
-   </definition>  
+   <!-- Active Agreements Page -->
+   <definition name="active" extends="base-definition">
+       <put-attribute name="title" value="Aktywne umowy" />
+       <put-attribute name="body" value="/WEB-INF/views/pages/active.jsp" />
+   </definition>
+
+   <!-- All Agreements Page -->
+   <definition name="all" extends="base-definition">
+       <put-attribute name="title" value="Wszystkie umowy" />
+       <put-attribute name="body" value="/WEB-INF/views/pages/all.jsp" />
+   </definition>
+
+   <!-- Systems Page -->
+   <definition name="systems" extends="base-definition">
+       <put-attribute name="title" value="Systemy" />
+       <put-attribute name="body" value="/WEB-INF/views/pages/system.jsp" />
+   </definition>
       
    <!-- Contact-us Page -->
    <definition name="contactus" extends="base-definition">  
