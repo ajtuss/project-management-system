@@ -1,54 +1,31 @@
 package com.mycompany.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.List;
 
 @Entity
-@Table(name = "system")
+@Table(name = "systems")
+@Data
 public class System {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 25)
     private String name;
 
-    public Long getId() {
-        return id;
-    }
+    private String description;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "tech_description")
+    private String techDescription;
 
-    public String getName() {
-        return name;
-    }
+    @Column(length = 25)
+    private String owner;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        System system = (System) o;
-        return Objects.equals(id, system.id) &&
-                Objects.equals(name, system.name);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id, name);
-    }
-
-    @Override
-    public String toString() {
-        return "System{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
+    @OneToMany(mappedBy = "system")
+    private List<Agreement> agreements;
 }
+
