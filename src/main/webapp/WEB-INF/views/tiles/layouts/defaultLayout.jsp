@@ -27,7 +27,7 @@
     <tiles:insertAttribute name="menu"/>
 </section>
 
-<div class="container wrapper">
+<div class="container">
     <section id="site-content">
         <tiles:insertAttribute name="body"/>
     </section>
