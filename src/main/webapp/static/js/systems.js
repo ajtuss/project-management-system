@@ -20,14 +20,7 @@ $(function () {
                 extend: 'selectedSingle',
                 text: 'Edytuj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/orders/edit?id='+dt.row({selected: true}).data().id;
-                }
-            },
-            {
-                extend: 'selectedSingle',
-                text: 'Usuń',
-                action: function (e, dt, button, config) {
-                    window.location.href = '/orders/delete?id='+dt.row({selected: true}).data().id;
+                    window.location.href = '/systems/edit?id='+dt.row({selected: true}).data().id;
                 }
             }
         ],
