@@ -15,16 +15,6 @@ public class AppController {
         return "home";
     }
 
-    @RequestMapping(value = {"/active"}, method = RequestMethod.GET)
-    public String activePage(ModelMap model) {
-        return "active";
-    }
-
-    @RequestMapping(value = {"/all"}, method = RequestMethod.GET)
-    public String allPage(ModelMap model) {
-        return "all";
-    }
-
     @RequestMapping(value = {"/contactus"}, method = RequestMethod.GET)
     public String contactUsPage(ModelMap model) {
         return "contactus";
