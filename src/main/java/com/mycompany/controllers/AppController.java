@@ -25,11 +25,6 @@ public class AppController {
         return "all";
     }
 
-    @RequestMapping(value = {"/systems"}, method = RequestMethod.GET)
-    public String systemsPage(ModelMap model) {
-        return "systems";
-    }
-
     @RequestMapping(value = {"/contactus"}, method = RequestMethod.GET)
     public String contactUsPage(ModelMap model) {
         return "contactus";
