@@ -6,6 +6,7 @@
 <table id="systems" class="display" style="width:100%">
     <thead>
     <tr>
+        <th>Id</th>
         <th>Nazwa</th>
         <th>Opis</th>
         <th>Specyfikacja Techniczna</th>
@@ -15,6 +16,7 @@
     <tbody>
     <c:forEach var="system" items="${systems}">
         <tr>
+            <td>${system.id}</td>
             <td>${system.name}</td>
             <td>${system.description}</td>
             <td>${system.techDescription}</td>
