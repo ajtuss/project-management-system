@@ -2,10 +2,12 @@ package com.mycompany.dto;
 
 import com.mycompany.domain.Period;
 import com.mycompany.domain.System;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Data
 public class AgreementDTO {
 
     private Long id;

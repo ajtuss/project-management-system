@@ -1,5 +1,8 @@
 package com.mycompany.dto;
 
+import lombok.Data;
+
+@Data
 public class SystemDTO {
 
     private Long id;
