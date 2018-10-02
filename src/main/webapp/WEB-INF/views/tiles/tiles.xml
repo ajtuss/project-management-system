@@ -37,6 +37,16 @@
    <definition name="all" extends="base-definition">
        <put-attribute name="title" value="Wszystkie umowy" />
        <put-attribute name="body" value="/WEB-INF/views/pages/all.jsp" />
+       <put-list-attribute name="stylesheets" inherit="true">
+           <add-attribute value="/webjars/datatables/1.10.19/css/jquery.dataTables.css" />
+           <add-attribute value="/webjars/datatables-buttons/1.5.2/css/buttons.dataTables.css" />
+       </put-list-attribute>
+       <put-list-attribute name="javascripts" inherit="true">
+           <add-attribute value="/webjars/datatables/1.10.19/js/jquery.dataTables.js" />
+           <add-attribute value="/webjars/datatables-buttons/1.5.2/js/dataTables.buttons.js" />
+           <add-attribute value="/webjars/datatables.net-select/1.2.3/js/dataTables.select.js" />
+           <add-attribute value="/static/js/agreements.js" />
+       </put-list-attribute>
    </definition>
 
    <!-- Systems Page -->
