@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class AgreementDTO {
 
     private Long id;
-    private System system;
+    private String systemName;
     private String orderNumber;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
