@@ -7,11 +7,10 @@ import com.mycompany.services.SystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -30,14 +29,17 @@ public class AgreementController {
 
     @GetMapping("/active")
     public String activePage(ModelMap model) {
-        return "active";
+        List<AgreementDTO> agreements = agreementService.getAllActive();
+        model.addAttribute("agreements", agreements);
+        return "activeAgreements";
+
     }
 
     @GetMapping
     public String allPage(ModelMap model) {
         List<AgreementDTO> agreements = agreementService.getAll();
         model.addAttribute("agreements", agreements);
-        return "all";
+        return "allAgreements";
     }
 
     @GetMapping("/add")
@@ -49,9 +51,29 @@ public class AgreementController {
     }
 
     @PostMapping("/add")
-    public String addAgreement(@ModelAttribute AgreementDTO agreement){
-        System.out.println(agreement);
+    public String addAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result){
+        if(result.hasErrors()){
+            return "addAgreement";
+        }
         agreementService.save(agreement);
+        return "redirect:/agreements";
+    }
+
+    @GetMapping("/edit")
+    public String agreementEditPage(@RequestParam Long id, ModelMap model){
+        AgreementDTO agreement = agreementService.findById(id);
+        model.addAttribute("agreement", agreement);
+        List<SystemDTO> systems = systemService.getAll();
+        model.addAttribute("systems", systems);
+        return "editAgreement";
+    }
+
+    @PostMapping("/edit")
+    public String editAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result){
+        if(result.hasErrors()){
+            return "editAgreement";
+        }
+        agreementService.update(agreement);
         return "redirect:/agreements";
     }
 }
