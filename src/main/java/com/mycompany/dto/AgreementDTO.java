@@ -24,9 +24,11 @@ public class AgreementDTO {
     @Size(min = 3)
     private String orderNumber;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
+    @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
