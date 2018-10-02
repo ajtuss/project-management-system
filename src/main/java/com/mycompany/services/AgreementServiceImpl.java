@@ -48,8 +48,23 @@ public class AgreementServiceImpl implements AgreementService {
     }
 
     @Override
+    public List<AgreementDTO> getAllActive() {
+        List<Agreement> agreements = agreementRepository.findAllActive();
+        List<AgreementDTO> result = agreements.stream()
+                                              .map(agreement -> mapper.map(agreement, AgreementDTO.class))
+                                              .collect(Collectors.toList());
+        return result;
+    }
+
+    @Override
     public AgreementDTO findById(Long id) {
         Agreement agreement = agreementRepository.findById(id).orElse(new Agreement());
         return mapper.map(agreement, AgreementDTO.class);
     }
+
+    @Override
+    public AgreementDTO update(AgreementDTO agreement) {
+        return save(agreement);
+    }
+
 }

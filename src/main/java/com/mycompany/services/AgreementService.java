@@ -13,4 +13,7 @@ public interface AgreementService {
 
     AgreementDTO findById(@NotNull Long id);
 
+    AgreementDTO update(AgreementDTO agreement);
+
+    List<AgreementDTO> getAllActive();
 }
