@@ -47,4 +47,11 @@ public class SystemServiceImpl implements SystemService {
         return mapper.map(system, SystemDTO.class);
     }
 
+    @Override
+    public SystemDTO update(SystemDTO systemDTO) {
+        System system = mapper.map(systemDTO, System.class);
+        System save = systemRepository.save(system);
+        return mapper.map(save, SystemDTO.class);
+    }
+
 }

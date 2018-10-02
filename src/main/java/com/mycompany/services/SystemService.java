@@ -13,4 +13,5 @@ public interface SystemService {
 
     SystemDTO findById(@NotNull Long id);
 
+    SystemDTO update(SystemDTO systemDTO);
 }
