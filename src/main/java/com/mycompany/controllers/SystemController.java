@@ -28,5 +28,11 @@ public class SystemController {
         return "systems";
     }
 
+    @GetMapping("/add")
+    public String systemAddPage(ModelMap model){
+        model.addAttribute("system", new SystemDTO());
+        return "addSystem";
+    }
+
 
 }
