@@ -1,35 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
-<h2>Dodaj system:</h2>
+<h2><tiles:getAsString name="title"/>:</h2>
 
-<form class="form-horizontal" action="" method="post">
+<form:form class="form-horizontal" action="" method="post" modelAttribute="system">
+    <form:input path="id" hidden="true"/>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="name">Nazwa systemu:</label>
+        <form:label class="control-label col-sm-2" path="name">Nazwa systemu:</form:label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="name" placeholder="Wpisz nazwę systemu" name="name" min="3" max="25" required>
+            <form:input type="text" class="form-control" id="name" placeholder="Wpisz nazwę systemu" path="name"/>
         </div>
+        <form:errors path="name" cssClass="error col-sm-4" element="div"/>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="desc">Opis systemu:</label>
+        <form:label class="control-label col-sm-2" path="description">Opis systemu:</form:label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="desc" placeholder="Wpisz opis..." name="description">
+            <form:input type="text" class="form-control" id="desc" placeholder="Wpisz opis..." path="description"/>
         </div>
+        <form:errors path="description" cssClass="error col-sm-4" element="div"/>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="techDesc">Opis technologii:</label>
+        <form:label class="control-label col-sm-2" path="techDescription">Opis technologii:</form:label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="techDesc" placeholder="Wpisz technologie..." name="techDescription" >
+            <form:input type="text" class="form-control" id="techDesc" placeholder="Wpisz technologie..."
+                        path="techDescription"/>
         </div>
+        <form:errors path="techDescription" cssClass="error col-sm-4" element="div"/>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-2" for="owner">Właściciel systemu:</label>
+        <form:label class="control-label col-sm-2" path="owner">Właściciel systemu:</form:label>
         <div class="col-sm-4">
-            <input type="text" class="form-control" id="owner" placeholder="Wpisz właściciela..." name="owner" min="3" max="25" required>
+            <form:input type="text" class="form-control" id="owner" placeholder="Wpisz właściciela..." path="owner"
+                        min="3" max="25"/>
         </div>
+        <form:errors path="owner" cssClass="error col-sm-4" element="div"/>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Zapisz</button>
+            <form:button type="submit" class="btn btn-primary">Zapisz</form:button>
         </div>
     </div>
-</form>
+</form:form>

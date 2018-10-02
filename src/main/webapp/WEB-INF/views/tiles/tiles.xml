@@ -6,7 +6,7 @@
    <!-- Base Definition -->
    <definition name="base-definition" 
        template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp">  
-       <put-attribute name="title" value="" />  
+       <put-attribute name="title" value="" cascade="true"/>
        <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />
        <put-attribute name="body" value="" />  
        <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
@@ -28,15 +28,25 @@
    </definition>  
 
    <!-- Active Agreements Page -->
-   <definition name="active" extends="base-definition">
-       <put-attribute name="title" value="Aktywne umowy" />
-       <put-attribute name="body" value="/WEB-INF/views/pages/active.jsp" />
+   <definition name="activeAgreements" extends="base-definition">
+       <put-attribute name="title" value="Aktywne umowy" cascade="true"/>
+       <put-attribute name="body" value="/WEB-INF/views/pages/agreements.jsp" />
+       <put-list-attribute name="stylesheets" inherit="true">
+           <add-attribute value="/webjars/datatables/1.10.19/css/jquery.dataTables.css" />
+           <add-attribute value="/webjars/datatables-buttons/1.5.2/css/buttons.dataTables.css" />
+       </put-list-attribute>
+       <put-list-attribute name="javascripts" inherit="true">
+           <add-attribute value="/webjars/datatables/1.10.19/js/jquery.dataTables.js" />
+           <add-attribute value="/webjars/datatables-buttons/1.5.2/js/dataTables.buttons.js" />
+           <add-attribute value="/webjars/datatables.net-select/1.2.3/js/dataTables.select.js" />
+           <add-attribute value="/static/js/agreements.js" />
+       </put-list-attribute>
    </definition>
 
    <!-- All Agreements Page -->
-   <definition name="all" extends="base-definition">
-       <put-attribute name="title" value="Wszystkie umowy" />
-       <put-attribute name="body" value="/WEB-INF/views/pages/all.jsp" />
+   <definition name="allAgreements" extends="base-definition">
+       <put-attribute name="title" value="Wszystkie umowy" cascade="true"/>
+       <put-attribute name="body" value="/WEB-INF/views/pages/agreements.jsp" />
        <put-list-attribute name="stylesheets" inherit="true">
            <add-attribute value="/webjars/datatables/1.10.19/css/jquery.dataTables.css" />
            <add-attribute value="/webjars/datatables-buttons/1.5.2/css/buttons.dataTables.css" />
@@ -51,7 +61,16 @@
 
     <!-- Add Agreement Page -->
     <definition name="addAgreement" extends="base-definition">
-        <put-attribute name="title" value="Dodaj Umowę" />
+        <put-attribute name="title" value="Dodaj umowę" cascade="true"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/addAgreement.jsp" />
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="/static/css/forms.css" />
+        </put-list-attribute>
+    </definition>
+
+    <!-- Edit Agreement Page -->
+    <definition name="editAgreement" extends="base-definition">
+        <put-attribute name="title" value="Edytuj umowę" cascade="true"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/addAgreement.jsp" />
         <put-list-attribute name="stylesheets" inherit="true">
             <add-attribute value="/static/css/forms.css" />
@@ -76,14 +95,20 @@
 
     <!-- Add System Page -->
     <definition name="addSystem" extends="base-definition">
-        <put-attribute name="title" value="Dodaj System" />
+        <put-attribute name="title" value="Dodaj system" cascade="true"/>
         <put-attribute name="body" value="/WEB-INF/views/pages/addSystem.jsp" />
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="/static/js/forms.js" />
+        </put-list-attribute>
     </definition>
 
     <!-- Edit System Page -->
     <definition name="editSystem" extends="base-definition">
-        <put-attribute name="title" value="Edytuj System" />
-        <put-attribute name="body" value="/WEB-INF/views/pages/editSystem.jsp" />
+        <put-attribute name="title" value="Edytuj system" cascade="true"/>
+        <put-attribute name="body" value="/WEB-INF/views/pages/addSystem.jsp" />
+        <put-list-attribute name="javascripts" inherit="true">
+            <add-attribute value="/static/js/forms.js" />
+        </put-list-attribute>
     </definition>
       
    <!-- Contact-us Page -->
