@@ -3,6 +3,7 @@ package com.mycompany.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,8 @@ public class System {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 25)
+    @NotNull
+    @Column(length = 25, unique = true)
     private String name;
 
     private String description;
@@ -22,6 +24,7 @@ public class System {
     @Column(name = "tech_description")
     private String techDescription;
 
+    @NotNull
     @Column(length = 25)
     private String owner;
 
