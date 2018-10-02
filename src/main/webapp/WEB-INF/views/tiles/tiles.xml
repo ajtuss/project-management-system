@@ -60,6 +60,12 @@
         <put-attribute name="title" value="Dodaj System" />
         <put-attribute name="body" value="/WEB-INF/views/pages/addSystem.jsp" />
     </definition>
+
+    <!-- Edit System Page -->
+    <definition name="editSystem" extends="base-definition">
+        <put-attribute name="title" value="Edytuj System" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/editSystem.jsp" />
+    </definition>
       
    <!-- Contact-us Page -->
    <definition name="contactus" extends="base-definition">  
