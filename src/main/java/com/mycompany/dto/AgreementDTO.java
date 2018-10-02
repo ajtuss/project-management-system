@@ -1,21 +1,28 @@
 package com.mycompany.dto;
 
+import com.mycompany.domain.AmountType;
 import com.mycompany.domain.Period;
-import com.mycompany.domain.System;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Data
 public class AgreementDTO {
 
     private Long id;
+    private Long systemId;
     private String systemName;
     private String orderNumber;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate startDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate endDate;
     private BigDecimal amount;
+    private AmountType amountType;
     private Period amountPeriod;
-    private Boolean active;
+    private boolean active;
 }

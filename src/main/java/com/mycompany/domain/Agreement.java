@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "agreements")
@@ -23,15 +23,19 @@ public class Agreement {
     private String orderNumber;
 
     @Column(name = "start_date")
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     @Column(name = "end_date")
-    private LocalDateTime endDate;
+    private LocalDate endDate;
 
     @Column(precision = 12, scale = 2)
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "amount_type",length = 6)
+    private AmountType amountType;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "amount_period",length = 10)
     private Period amountPeriod;
-    private Boolean active;
+    private boolean active;
 }
