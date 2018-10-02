@@ -2,6 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+
 <tiles:importAttribute name="stylesheets"/>
 <tiles:importAttribute name="javascripts"/>
 
@@ -17,7 +18,6 @@
         <link rel="stylesheet" type="text/css" href="<c:url value="${css}"/>">
     </c:forEach>
     <%--end stylesheets--%>
-
 </head>
 
 <body>
@@ -41,5 +41,7 @@
     <script src="<c:url value="${script}"/>"></script>
 </c:forEach>
 <!-- end scripts -->
+
 </body>
+
 </html>
