@@ -49,6 +49,15 @@
        </put-list-attribute>
    </definition>
 
+    <!-- Add Agreement Page -->
+    <definition name="addAgreement" extends="base-definition">
+        <put-attribute name="title" value="Dodaj Umowę" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/addAgreement.jsp" />
+        <put-list-attribute name="stylesheets" inherit="true">
+            <add-attribute value="/static/css/forms.css" />
+        </put-list-attribute>
+    </definition>
+
    <!-- Systems Page -->
    <definition name="systems" extends="base-definition">
        <put-attribute name="title" value="Systemy" />
