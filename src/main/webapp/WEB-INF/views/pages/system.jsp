@@ -1,14 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <h2>System page</h2>
 
 <table id="example" class="display" style="width:100%">
     <thead>
     <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Office</th>
-        <th>Age</th>
-        <th>Start date</th>
-        <th>Salary</th>
+        <th>Nazwa</th>
+        <th>Opis</th>
+        <th>Specyfikacja Techniczna</th>
+        <th>Właściciel</th>
     </tr>
     </thead>
     <tbody>
@@ -17,8 +17,6 @@
         <td>System Architect</td>
         <td>Edinburgh</td>
         <td>61</td>
-        <td>2011/04/25</td>
-        <td>$320,800</td>
     </tr>
     </tbody>
 </table>

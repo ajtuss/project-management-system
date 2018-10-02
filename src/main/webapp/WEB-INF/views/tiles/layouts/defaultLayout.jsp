@@ -22,7 +22,6 @@
 
 <body>
 
-
 <section id="topmenu">
     <tiles:insertAttribute name="menu"/>
 </section>
