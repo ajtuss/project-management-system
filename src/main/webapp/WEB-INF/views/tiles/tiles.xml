@@ -17,6 +17,7 @@
        <put-list-attribute name="javascripts">
            <add-attribute value="/webjars/jquery/3.1.1/jquery.js" />
            <add-attribute value="/webjars/bootstrap/3.3.7-1/js/bootstrap.js" />
+           <add-attribute value="/static/js/menu.js" />
        </put-list-attribute>
    </definition>  
  
@@ -43,6 +44,12 @@
        <put-attribute name="title" value="Systemy" />
        <put-attribute name="body" value="/WEB-INF/views/pages/system.jsp" />
    </definition>
+
+    <!-- Add System Page -->
+    <definition name="addSystem" extends="base-definition">
+        <put-attribute name="title" value="Dodaj System" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/addSystem.jsp" />
+    </definition>
       
    <!-- Contact-us Page -->
    <definition name="contactus" extends="base-definition">  
