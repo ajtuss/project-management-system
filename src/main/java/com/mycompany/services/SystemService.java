@@ -1,47 +1,16 @@
 package com.mycompany.services;
 
-import com.mycompany.domain.System;
 import com.mycompany.dto.SystemDTO;
-import com.mycompany.repositories.SystemRepository;
 import com.sun.istack.internal.NotNull;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Service
-@Transactional
-public class SystemService {
+public interface SystemService {
 
-    private final SystemRepository systemRepository;
-    private final ModelMapper mapper;
+    SystemDTO save(SystemDTO systemDTO);
 
-    @Autowired
-    public SystemService(SystemRepository systemRepository, ModelMapper mapper) {
-        this.systemRepository = systemRepository;
-        this.mapper = mapper;
-    }
+    List<SystemDTO> getAll();
 
-    public SystemDTO saveSystem(SystemDTO systemDTO) {
-        System system = mapper.map(systemDTO, System.class);
-        System save = systemRepository.save(system);
-        return mapper.map(save, SystemDTO.class);
-    }
-
-    public List<SystemDTO> getAll() {
-        List<System> systems = systemRepository.findAll();
-        List<SystemDTO> result = systems.stream()
-                                         .map(system -> mapper.map(system, SystemDTO.class))
-                                         .collect(Collectors.toList());
-        return result;
-    }
-
-    public SystemDTO findById(@NotNull Long id){
-        System system = systemRepository.findById(id).orElse(new System());
-        return mapper.map(system, SystemDTO.class);
-    }
+    SystemDTO findById(@NotNull Long id);
 
 }

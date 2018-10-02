@@ -1,21 +1,17 @@
 package com.mycompany.services;
 
-import com.mycompany.repositories.AgreementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.mycompany.dto.AgreementDTO;
+import com.mycompany.dto.SystemDTO;
+import com.sun.istack.internal.NotNull;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
-@Service
-@Transactional
-public class AgreementService {
+public interface AgreementService {
 
-    private final AgreementRepository agreementRepository;
+    AgreementDTO save(AgreementDTO agreementDTO);
 
-    @Autowired
-    public AgreementService(AgreementRepository agreementRepository) {
-        this.agreementRepository = agreementRepository;
-    }
+    List<AgreementDTO> getAll();
 
+    AgreementDTO findById(@NotNull Long id);
 
 }
