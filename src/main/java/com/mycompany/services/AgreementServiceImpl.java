@@ -1,8 +1,10 @@
 package com.mycompany.services;
 
 import com.mycompany.domain.Agreement;
+import com.mycompany.domain.System;
 import com.mycompany.dto.AgreementDTO;
 import com.mycompany.repositories.AgreementRepository;
+import com.mycompany.repositories.SystemRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +18,22 @@ import java.util.stream.Collectors;
 public class AgreementServiceImpl implements AgreementService {
 
     private final AgreementRepository agreementRepository;
-
+    private final SystemRepository systemRepository;
     private final ModelMapper mapper;
 
     @Autowired
-    public AgreementServiceImpl(AgreementRepository agreementRepository, ModelMapper mapper) {
+    public AgreementServiceImpl(AgreementRepository agreementRepository, ModelMapper mapper, SystemRepository systemRepository) {
         this.agreementRepository = agreementRepository;
         this.mapper = mapper;
+        this.systemRepository = systemRepository;
     }
 
 
     @Override
     public AgreementDTO save(AgreementDTO agreementDTO) {
         Agreement agreement = mapper.map(agreementDTO, Agreement.class);
+        System system = systemRepository.findById(agreementDTO.getSystemId()).orElse(null);
+        agreement.setSystem(system);
         Agreement save = agreementRepository.save(agreement);
         return mapper.map(save, AgreementDTO.class);
     }
