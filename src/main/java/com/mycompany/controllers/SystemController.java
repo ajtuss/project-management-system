@@ -26,7 +26,7 @@ public class SystemController {
     @GetMapping
     public String systemsPage(ModelMap model) {
         List<SystemDTO> systems = systemService.getAll();
-        model.addAttribute(systems);
+        model.addAttribute("systems", systems);
         return "systems";
     }
 
@@ -38,8 +38,7 @@ public class SystemController {
 
     @PostMapping("/add")
     public String addSystem(@ModelAttribute SystemDTO system){
-        System.out.println(system);
-//        systemService.saveSystem(system);
+        systemService.saveSystem(system);
         return "redirect:/systems";
     }
 
