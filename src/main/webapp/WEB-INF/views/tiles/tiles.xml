@@ -9,7 +9,15 @@
        <put-attribute name="title" value="" />  
        <put-attribute name="menu" value="/WEB-INF/views/tiles/template/defaultMenu.jsp" />
        <put-attribute name="body" value="" />  
-       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />  
+       <put-attribute name="footer" value="/WEB-INF/views/tiles/template/defaultFooter.jsp" />
+       <put-list-attribute name="stylesheets">
+           <add-attribute value="/webjars/bootstrap/3.3.7-1/css/bootstrap.css" />
+           <add-attribute value="/static/css/layout.css" />
+       </put-list-attribute>
+       <put-list-attribute name="javascripts">
+           <add-attribute value="/webjars/jquery/3.1.1/jquery.js" />
+           <add-attribute value="/webjars/bootstrap/3.3.7-1/js/bootstrap.js" />
+       </put-list-attribute>
    </definition>  
  
    <!-- Home Page -->
