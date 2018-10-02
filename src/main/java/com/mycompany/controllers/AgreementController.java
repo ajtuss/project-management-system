@@ -69,11 +69,15 @@ public class AgreementController {
     }
 
     @PostMapping("/edit")
-    public String editAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result){
+    public String editAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result, ModelMap model){
         if(result.hasErrors()){
+            List<SystemDTO> systems = systemService.getAll();
+            model.addAttribute("systems", systems);
             return "editAgreement";
         }
         agreementService.update(agreement);
         return "redirect:/agreements";
     }
+
+
 }
