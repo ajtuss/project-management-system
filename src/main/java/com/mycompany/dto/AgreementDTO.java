@@ -5,6 +5,9 @@ import com.mycompany.domain.Period;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -12,8 +15,13 @@ import java.time.LocalDate;
 public class AgreementDTO {
 
     private Long id;
+
+    @NotNull
     private Long systemId;
+
     private String systemName;
+
+    @Size(min = 3)
     private String orderNumber;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -21,8 +29,19 @@ public class AgreementDTO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
+
+    @DecimalMin("0.0")
     private BigDecimal amount;
+
+    @NotNull
     private AmountType amountType;
+
+    @NotNull
     private Period amountPeriod;
+
     private boolean active;
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber.trim();
+    }
 }
