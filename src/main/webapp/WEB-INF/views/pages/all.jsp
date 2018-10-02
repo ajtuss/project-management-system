@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <h2>Wszystkie umowy:</h2>
@@ -13,7 +14,6 @@
         <th>Do</th>
         <th>Wpływy</th>
         <th>W skali</th>
-        <th>W skali</th>
         <th>Aktywna</th>
     </tr>
     </thead>
@@ -25,8 +25,8 @@
             <td>${agreement.orderNumber}</td>
             <td>${agreement.startDate}</td>
             <td>${agreement.endDate}</td>
-            <td>${agreement.amount}</td>
-            <td>${agreement.amountPeriod}</td>
+            <td>${agreement.amount} zł ${fn:toLowerCase(agreement.amountType)}</td>
+            <td>${fn:toLowerCase(agreement.amountPeriod)}</td>
             <td>${agreement.active}</td>
         </tr>
     </c:forEach>
