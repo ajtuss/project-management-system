@@ -1,10 +1,12 @@
 package com.mycompany.dto;
 
+import com.mycompany.constraints.UniqueName;
 import lombok.Data;
 
 import javax.validation.constraints.Size;
 
 @Data
+@UniqueName
 public class SystemDTO {
 
     private Long id;

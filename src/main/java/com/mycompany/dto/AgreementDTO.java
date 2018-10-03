@@ -2,6 +2,7 @@ package com.mycompany.dto;
 
 import com.mycompany.constraints.CompareDate;
 import com.mycompany.constraints.SystemExist;
+import com.mycompany.constraints.UniqueOrderNumber;
 import com.mycompany.domain.AmountType;
 import com.mycompany.domain.Period;
 import lombok.Data;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 @Data
 @SystemExist(systemId = "systemId", systemName = "systemName")
 @CompareDate(startDate = "startDate", endDate = "endDate")
+@UniqueOrderNumber
 public class AgreementDTO {
 
     private Long id;
