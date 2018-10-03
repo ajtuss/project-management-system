@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,8 +33,13 @@ public class AgreementServiceImpl implements AgreementService {
     @Override
     public AgreementDTO save(AgreementDTO agreementDTO) {
         Agreement agreement = mapper.map(agreementDTO, Agreement.class);
-        System system = systemRepository.findById(agreementDTO.getSystemId()).orElse(null);
-        agreement.setSystem(system);
+        Optional<System> system;
+        if (agreementDTO.getSystemName() != null) {
+            system = systemRepository.findByNameIgnoreCase(agreementDTO.getSystemName());
+        } else {
+            system = systemRepository.findById(agreementDTO.getSystemId());
+        }
+        agreement.setSystem(system.orElse(null));
         Agreement save = agreementRepository.save(agreement);
         return mapper.map(save, AgreementDTO.class);
     }
@@ -41,19 +47,23 @@ public class AgreementServiceImpl implements AgreementService {
     @Override
     public List<AgreementDTO> getAll() {
         List<Agreement> agreements = agreementRepository.findAll();
-        List<AgreementDTO> result = agreements.stream()
-                                                     .map(agreement -> mapper.map(agreement, AgreementDTO.class))
-                                                     .collect(Collectors.toList());
-        return result;
+        return agreements.stream()
+                         .map(agreement -> mapper.map(agreement, AgreementDTO.class))
+                         .collect(Collectors.toList());
     }
 
     @Override
     public List<AgreementDTO> getAllActive() {
         List<Agreement> agreements = agreementRepository.findAllActive();
-        List<AgreementDTO> result = agreements.stream()
-                                              .map(agreement -> mapper.map(agreement, AgreementDTO.class))
-                                              .collect(Collectors.toList());
-        return result;
+        return agreements.stream()
+                         .map(agreement -> mapper.map(agreement, AgreementDTO.class))
+                         .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AgreementDTO> save(List<AgreementDTO> listAgreements) {
+        return listAgreements.stream().map(this::save)
+                             .collect(Collectors.toList());
     }
 
     @Override

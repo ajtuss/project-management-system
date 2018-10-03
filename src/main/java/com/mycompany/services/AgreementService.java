@@ -16,4 +16,6 @@ public interface AgreementService {
     AgreementDTO update(AgreementDTO agreement);
 
     List<AgreementDTO> getAllActive();
+
+    List<AgreementDTO> save(List<AgreementDTO> listAgreements);
 }
