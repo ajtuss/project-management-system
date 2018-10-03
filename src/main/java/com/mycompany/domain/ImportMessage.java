@@ -10,4 +10,8 @@ public class ImportMessage {
     int done;
     int fail;
     String message;
+
+    public ImportMessage(String message) {
+        this.message = message;
+    }
 }
