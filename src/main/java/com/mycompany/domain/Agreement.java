@@ -3,6 +3,7 @@ package com.mycompany.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -15,11 +16,12 @@ public class Agreement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "system_id")
     private System system;
 
-    @Column(name = "order_number")
+    @Column(name = "order_number", unique = true)
     private String orderNumber;
 
     @Column(name = "start_date")
