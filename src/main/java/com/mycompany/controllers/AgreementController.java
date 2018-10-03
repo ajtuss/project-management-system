@@ -51,8 +51,10 @@ public class AgreementController {
     }
 
     @PostMapping("/add")
-    public String addAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result){
+    public String addAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result, ModelMap model){
         if(result.hasErrors()){
+            List<SystemDTO> systems = systemService.getAll();
+            model.addAttribute("systems", systems);
             return "addAgreement";
         }
         agreementService.save(agreement);
