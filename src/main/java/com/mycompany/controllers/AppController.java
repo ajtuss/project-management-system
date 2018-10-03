@@ -33,10 +33,12 @@ public class AppController {
         return "contactus";
     }
 
-    @PostMapping(value = "/upload")
+    @PostMapping(value = "/import")
     public String submit(@RequestParam("file") MultipartFile file, RedirectAttributes ra) {
         try {
             ImportMessage importMessage = fileService.importSpreadsheet(file);
+            ra.addFlashAttribute("message", importMessage);
+
         } catch (IOException e) {
             ra.addFlashAttribute("message", new ImportMessage("Błąd pliku"));
         }
