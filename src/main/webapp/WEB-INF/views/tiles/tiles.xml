@@ -115,6 +115,12 @@
    <definition name="contactus" extends="base-definition">  
        <put-attribute name="title" value="Contact Us" />  
        <put-attribute name="body" value="/WEB-INF/views/pages/contactus.jsp" />  
-   </definition>  
- 
+   </definition>
+
+    <!-- Import Page -->
+    <definition name="import" extends="base-definition">
+        <put-attribute name="title" value="Importuj dane" />
+        <put-attribute name="body" value="/WEB-INF/views/pages/import.jsp" />
+    </definition>
+
 </tiles-definitions>
