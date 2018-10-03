@@ -21,7 +21,7 @@ public class AgreementDTO {
 
     private String systemName;
 
-    @Size(min = 3)
+    @Size(min = 3, max = 255)
     private String orderNumber;
 
     @NotNull
