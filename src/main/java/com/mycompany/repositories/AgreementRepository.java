@@ -10,4 +10,6 @@ public interface AgreementRepository extends JpaRepository<Agreement, Long> {
 
     @Query("SELECT a FROM Agreement a WHERE a.active = TRUE ")
     List<Agreement> findAllActive();
+
+    Agreement findByOrderNumber(String orderNumber);
 }
