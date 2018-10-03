@@ -22,6 +22,12 @@ $(function () {
                 action: function (e, dt, button, config) {
                     window.location.href = '/agreements/edit?id='+dt.row({selected: true}).data()[0];
                 }
+            },
+            {
+                text: 'Importuj',
+                action: function (e, dt, button, config) {
+                    window.location.href = '/import';
+                }
             }
         ],
         paging: false,
