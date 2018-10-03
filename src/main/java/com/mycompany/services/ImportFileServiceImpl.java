@@ -45,14 +45,13 @@ public class ImportFileServiceImpl implements ImportFileService {
         List<AgreementDTO> listAgreements = getListAgreementsFromSheet(sheet);
 
         List<AgreementDTO> addedAgreements = listAgreements.stream()
-                                                     .filter(agreementDTO -> validator.validate(agreementDTO).isEmpty())
-                                                     .map(agreementService::save)
-                                                     .collect(Collectors.toList());
+                                                           .filter(agreementDTO -> validator.validate(agreementDTO)
+                                                                                            .isEmpty())
+                                                           .map(agreementService::save)
+                                                           .collect(Collectors.toList());
 
-        return ImportMessage.builder()
-                            .done(addedAgreements.size())
-                            .fail(listAgreements.size() - addedAgreements.size())
-                            .build();
+        return new ImportMessage(addedAgreements.size(),
+                listAgreements.size() - addedAgreements.size(), null);
     }
 
     private List<AgreementDTO> getListAgreementsFromSheet(Sheet sheet) {

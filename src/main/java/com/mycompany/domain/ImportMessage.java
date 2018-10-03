@@ -1,10 +1,7 @@
 package com.mycompany.domain;
 
-import lombok.Builder;
-
 import java.util.Objects;
 
-@Builder
 public class ImportMessage {
 
     int done;
