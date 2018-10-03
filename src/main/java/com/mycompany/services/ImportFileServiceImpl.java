@@ -49,12 +49,10 @@ public class ImportFileServiceImpl implements ImportFileService {
                                                      .map(agreementService::save)
                                                      .collect(Collectors.toList());
 
-        ImportMessage message = ImportMessage.builder()
-                                             .done(addedAgreements.size())
-                                             .fail(listAgreements.size() - addedAgreements.size())
-                                             .message("Done")
-                                             .build();
-        return message;
+        return ImportMessage.builder()
+                            .done(addedAgreements.size())
+                            .fail(listAgreements.size() - addedAgreements.size())
+                            .build();
     }
 
     private List<AgreementDTO> getListAgreementsFromSheet(Sheet sheet) {
