@@ -20,7 +20,7 @@ public class SystemDTO {
     private String owner;
 
     public void setName(String name) {
-        this.name = name.trim();
+        this.name = name.trim().toUpperCase();
     }
 
 
