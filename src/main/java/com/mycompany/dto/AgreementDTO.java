@@ -1,5 +1,7 @@
 package com.mycompany.dto;
 
+import com.mycompany.constraints.CompareDate;
+import com.mycompany.constraints.SystemExist;
 import com.mycompany.domain.AmountType;
 import com.mycompany.domain.Period;
 import lombok.Data;
@@ -12,11 +14,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Data
+@SystemExist(systemId = "systemId", systemName = "systemName")
+@CompareDate(startDate = "startDate", endDate = "endDate")
 public class AgreementDTO {
 
     private Long id;
 
-    @NotNull
     private Long systemId;
 
     private String systemName;
