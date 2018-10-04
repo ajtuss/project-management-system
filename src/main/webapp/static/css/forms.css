@@ -2,6 +2,7 @@ input[type=checkbox] {
     margin-top: 10px;
     transform: scale(1.8);
 }
+
 #amount {
     text-align: right;
 }

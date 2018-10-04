@@ -1,7 +1,6 @@
 package com.mycompany.services;
 
 import com.mycompany.dto.SystemDTO;
-import com.sun.istack.internal.NotNull;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public interface SystemService {
 
     List<SystemDTO> getAll();
 
-    SystemDTO findById(@NotNull Long id);
+    SystemDTO findById(Long id);
 
     SystemDTO update(SystemDTO systemDTO);
 }

@@ -24,15 +24,12 @@ public class UniqueOrderNumberValidator implements ConstraintValidator<UniqueOrd
         if (value == null) {
             return true;
         }
-        try {
-            Long id = value.getId();
-            String orderNumber = value.getOrderNumber();
+        Long id = value.getId();
+        String orderNumber = value.getOrderNumber();
 
-            Agreement found = agreementRepository.findByOrderNumber(orderNumber);
-            if (found == null || found.getId().equals(id)) {
-                return true;
-            }
-        } catch (Exception ignore) {
+        Agreement found = agreementRepository.findByOrderNumber(orderNumber);
+        if (found == null || found.getId().equals(id)) {
+            return true;
         }
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())

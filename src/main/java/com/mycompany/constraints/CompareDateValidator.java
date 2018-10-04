@@ -4,6 +4,7 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.lang.reflect.InvocationTargetException;
 import java.time.LocalDate;
 
 public class CompareDateValidator implements ConstraintValidator<CompareDate, Object> {
@@ -28,7 +29,8 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
             LocalDate startDate = (LocalDate) PropertyUtils.getProperty(value, startDateString);
             LocalDate endDate = (LocalDate) PropertyUtils.getProperty(value, endDateString);
             return endDate.isAfter(startDate);
-        } catch (Exception ignore) {
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
         }
 
         return false;

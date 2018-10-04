@@ -25,7 +25,7 @@
         <form:label class="control-label col-sm-3" for="orderNumber" path="orderNumber">Nr zamówienia:</form:label>
         <div class="col-sm-6">
             <form:input type="text" class="form-control" id="orderNumber" placeholder="Wpisz nr zamówienia..."
-                   path="orderNumber"/>
+                        path="orderNumber"/>
         </div>
         <form:errors path="orderNumber" cssClass="error col-sm-3" element="div"/>
     </div>
@@ -53,11 +53,11 @@
         <form:label class="control-label col-sm-3" for="amount" path="amount">Wpływy:</form:label>
         <div class="col-sm-4">
             <form:input type="number" class="form-control" id="amount" placeholder="Wpisz wpływy ..." path="amount"
-                   min="0" step="0.01"/>
+                        min="0" step="0.01"/>
         </div>
         <form:errors path="amount" cssClass="error col-sm-3" element="div"/>
 
-        <%--Amount Type--%>
+            <%--Amount Type--%>
         <div class="col-sm-2">
             <form:select class="form-control" path="amountType">
                 <option value="NETTO">Netto</option>

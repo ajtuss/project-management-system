@@ -3,7 +3,6 @@ package com.mycompany.services;
 import com.mycompany.domain.System;
 import com.mycompany.dto.SystemDTO;
 import com.mycompany.repositories.SystemRepository;
-import com.sun.istack.internal.NotNull;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,13 +35,13 @@ public class SystemServiceImpl implements SystemService {
     public List<SystemDTO> getAll() {
         List<System> systems = systemRepository.findAll();
         List<SystemDTO> result = systems.stream()
-                                         .map(system -> mapper.map(system, SystemDTO.class))
-                                         .collect(Collectors.toList());
+                                        .map(system -> mapper.map(system, SystemDTO.class))
+                                        .collect(Collectors.toList());
         return result;
     }
 
     @Override
-    public SystemDTO findById(@NotNull Long id){
+    public SystemDTO findById(Long id) {
         System system = systemRepository.findById(id).orElse(new System());
         return mapper.map(system, SystemDTO.class);
     }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import java.lang.reflect.InvocationTargetException;
 
 public class SystemExistValidator implements ConstraintValidator<SystemExist, AgreementDTO> {
 
@@ -33,8 +34,9 @@ public class SystemExistValidator implements ConstraintValidator<SystemExist, Ag
             if (nameValue != null) {
                 return systemRepository.existsByName(nameValue);
             }
-        } catch (Exception ignore) {
 
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            e.printStackTrace();
         }
         return false;
     }

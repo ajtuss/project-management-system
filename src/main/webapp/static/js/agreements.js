@@ -20,7 +20,7 @@ $(function () {
                 extend: 'selectedSingle',
                 text: 'Edytuj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/agreements/edit?id='+dt.row({selected: true}).data()[0];
+                    window.location.href = '/agreements/edit?id=' + dt.row({selected: true}).data()[0];
                 }
             },
             {

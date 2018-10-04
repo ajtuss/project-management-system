@@ -43,7 +43,7 @@ public class AgreementController {
     }
 
     @GetMapping("/add")
-    public String agreementAddPage(ModelMap model){
+    public String agreementAddPage(ModelMap model) {
         List<SystemDTO> systems = systemService.getAll();
         model.addAttribute("systems", systems);
         model.addAttribute("agreement", new AgreementDTO());
@@ -51,8 +51,8 @@ public class AgreementController {
     }
 
     @PostMapping("/add")
-    public String addAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result, ModelMap model){
-        if(result.hasErrors()){
+    public String addAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
             List<SystemDTO> systems = systemService.getAll();
             model.addAttribute("systems", systems);
             return "addAgreement";
@@ -62,7 +62,7 @@ public class AgreementController {
     }
 
     @GetMapping("/edit")
-    public String agreementEditPage(@RequestParam Long id, ModelMap model){
+    public String agreementEditPage(@RequestParam Long id, ModelMap model) {
         AgreementDTO agreement = agreementService.findById(id);
         model.addAttribute("agreement", agreement);
         List<SystemDTO> systems = systemService.getAll();
@@ -71,8 +71,8 @@ public class AgreementController {
     }
 
     @PostMapping("/edit")
-    public String editAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result, ModelMap model){
-        if(result.hasErrors()){
+    public String editAgreement(@ModelAttribute("agreement") @Valid AgreementDTO agreement, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
             List<SystemDTO> systems = systemService.getAll();
             model.addAttribute("systems", systems);
             return "editAgreement";

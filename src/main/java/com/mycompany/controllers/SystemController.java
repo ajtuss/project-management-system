@@ -30,14 +30,14 @@ public class SystemController {
     }
 
     @GetMapping("/add")
-    public String systemAddPage(ModelMap model){
+    public String systemAddPage(ModelMap model) {
         model.addAttribute("system", new SystemDTO());
         return "addSystem";
     }
 
     @PostMapping("/add")
-    public String addSystem(@ModelAttribute("system") @Valid SystemDTO system, BindingResult result){
-        if(result.hasErrors()){
+    public String addSystem(@ModelAttribute("system") @Valid SystemDTO system, BindingResult result) {
+        if (result.hasErrors()) {
             return "addSystem";
         }
         systemService.save(system);
@@ -45,15 +45,15 @@ public class SystemController {
     }
 
     @GetMapping("/edit")
-    public String systemEditPage(@RequestParam Long id,  ModelMap model){
+    public String systemEditPage(@RequestParam Long id, ModelMap model) {
         SystemDTO systemDTO = systemService.findById(id);
         model.addAttribute("system", systemDTO);
         return "editSystem";
     }
 
     @PostMapping("/edit")
-    public String editSystem(@ModelAttribute("system") @Valid SystemDTO system, BindingResult result){
-        if(result.hasErrors()){
+    public String editSystem(@ModelAttribute("system") @Valid SystemDTO system, BindingResult result) {
+        if (result.hasErrors()) {
             return "editSystem";
         }
         systemService.update(system);

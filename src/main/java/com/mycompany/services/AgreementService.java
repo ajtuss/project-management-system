@@ -1,7 +1,6 @@
 package com.mycompany.services;
 
 import com.mycompany.dto.AgreementDTO;
-import com.sun.istack.internal.NotNull;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public interface AgreementService {
 
     List<AgreementDTO> getAll();
 
-    AgreementDTO findById(@NotNull Long id);
+    AgreementDTO findById(Long id);
 
     AgreementDTO update(AgreementDTO agreement);
 

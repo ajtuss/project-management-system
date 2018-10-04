@@ -31,11 +31,11 @@ public class Agreement {
     private BigDecimal amount;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "amount_type",length = 6)
+    @Column(name = "amount_type", length = 6)
     private AmountType amountType;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "amount_period",length = 10)
+    @Column(name = "amount_period", length = 10)
     private Period amountPeriod;
     private boolean active;
 

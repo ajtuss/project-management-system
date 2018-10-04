@@ -23,15 +23,12 @@ public class UniqueNameValidator implements ConstraintValidator<UniqueName, Syst
         if (system == null) {
             return true;
         }
-        try {
-            Long id = system.getId();
-            String name = system.getName();
+        Long id = system.getId();
+        String name = system.getName();
 
-            System found = systemRepository.findByNameIgnoreCase(name).orElse(null);
-            if (found == null || found.getId().equals(id)) {
-                return true;
-            }
-        } catch (Exception ignore) {
+        System found = systemRepository.findByNameIgnoreCase(name).orElse(null);
+        if (found == null || found.getId().equals(id)) {
+            return true;
         }
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())

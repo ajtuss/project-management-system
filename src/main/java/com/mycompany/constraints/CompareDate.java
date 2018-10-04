@@ -22,5 +22,6 @@ public @interface CompareDate {
     Class<? extends Payload>[] payload() default {};
 
     String startDate();
+
     String endDate();
 }

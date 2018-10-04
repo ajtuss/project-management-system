@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Validator;
-import javax.validation.constraints.NotNull;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -36,7 +36,7 @@ public class ImportFileServiceImpl implements ImportFileService {
     }
 
     @Override
-    public ImportMessage importSpreadsheet(@NotNull MultipartFile multipartFile) throws Exception {
+    public ImportMessage importSpreadsheet(MultipartFile multipartFile) throws IOException {
 
         Workbook workbook = new XSSFWorkbook(multipartFile.getInputStream());
         Sheet sheet = workbook.getSheetAt(0);
@@ -103,7 +103,7 @@ public class ImportFileServiceImpl implements ImportFileService {
             agreementDTO.setAmountPeriod(getAmountPeriodFromString(amountPeriodString));
 
             String activeString = getStringValueFromCell(row.getCell(9));
-            agreementDTO.setActive(new Boolean(activeString));
+            agreementDTO.setActive(Boolean.valueOf(activeString));
 
 
         } catch (Exception ignore) {
