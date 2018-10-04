@@ -4,6 +4,7 @@ import com.mycompany.domain.AmountType;
 import com.mycompany.domain.ImportMessage;
 import com.mycompany.domain.Period;
 import com.mycompany.dto.AgreementDTO;
+import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -27,6 +28,7 @@ import java.util.stream.Collectors;
 @PropertySource("classpath:import.properties")
 public class ImportFileServiceImpl implements ImportFileService {
 
+    private static final Logger logger = Logger.getLogger(ImportFileServiceImpl.class);
     private final Environment env;
     private final Validator validator;
     private final AgreementService agreementService;
@@ -40,6 +42,8 @@ public class ImportFileServiceImpl implements ImportFileService {
 
     @Override
     public ImportMessage importSpreadsheet(MultipartFile multipartFile) {
+        logger.info("Call importSpreadsheet()");
+
         ImportMessage result = new ImportMessage();
         try {
             Workbook workbook = null;

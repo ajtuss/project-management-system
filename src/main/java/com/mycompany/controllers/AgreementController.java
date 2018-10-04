@@ -4,6 +4,7 @@ import com.mycompany.dto.AgreementDTO;
 import com.mycompany.dto.SystemDTO;
 import com.mycompany.services.AgreementService;
 import com.mycompany.services.SystemService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,8 +18,9 @@ import java.util.List;
 @RequestMapping("/agreements")
 public class AgreementController {
 
-    private final AgreementService agreementService;
+    private static final Logger logger = Logger.getLogger(AgreementController.class);
 
+    private final AgreementService agreementService;
     private final SystemService systemService;
 
     @Autowired
@@ -32,7 +34,6 @@ public class AgreementController {
         List<AgreementDTO> agreements = agreementService.getAllActive();
         model.addAttribute("agreements", agreements);
         return "activeAgreements";
-
     }
 
     @GetMapping
