@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-
 
 @Controller
 @RequestMapping("/")
@@ -39,7 +37,7 @@ public class AppController {
             ImportMessage importMessage = fileService.importSpreadsheet(file);
             ra.addFlashAttribute("message", importMessage);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             ra.addFlashAttribute("message", new ImportMessage("Błąd pliku"));
         }
         return "redirect:/import";
