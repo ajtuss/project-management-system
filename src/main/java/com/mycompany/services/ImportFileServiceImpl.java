@@ -39,22 +39,28 @@ public class ImportFileServiceImpl implements ImportFileService {
     }
 
     @Override
-    public ImportMessage importSpreadsheet(MultipartFile multipartFile) throws IOException {
+    public ImportMessage importSpreadsheet(MultipartFile multipartFile) {
+        ImportMessage result = new ImportMessage();
+        try {
+            Workbook workbook = null;
+            workbook = new XSSFWorkbook(multipartFile.getInputStream());
+            Sheet sheet = workbook.getSheetAt(0);
 
-        Workbook workbook = new XSSFWorkbook(multipartFile.getInputStream());
-        Sheet sheet = workbook.getSheetAt(0);
+            List<AgreementDTO> listAgreements = getListAgreementsFromSheet(sheet);
 
-        List<AgreementDTO> listAgreements = getListAgreementsFromSheet(sheet);
+            List<AgreementDTO> filteredAgreements = listAgreements.stream()
+                                                                  .filter(agreementDTO -> validator.validate(agreementDTO)
+                                                                                                   .isEmpty())
+                                                                  .collect(Collectors.toList());
 
-        List<AgreementDTO> filteredAgreements = listAgreements.stream()
-                                                              .filter(agreementDTO -> validator.validate(agreementDTO)
-                                                                                               .isEmpty())
-                                                              .collect(Collectors.toList());
+            List<AgreementDTO> savedAgreements = agreementService.save(filteredAgreements);
 
-        List<AgreementDTO> savedAgreements = agreementService.save(filteredAgreements);
-
-        return new ImportMessage(savedAgreements.size(),
-                listAgreements.size() - savedAgreements.size(), null);
+            result = new ImportMessage(savedAgreements.size(),
+                    listAgreements.size() - savedAgreements.size(), null);
+        } catch (IOException e) {
+            result.setMessage("Błąd pliku. " + e.getMessage());
+        }
+        return result;
     }
 
     private List<AgreementDTO> getListAgreementsFromSheet(Sheet sheet) throws InvalidPropertiesFormatException {
@@ -89,7 +95,7 @@ public class ImportFileServiceImpl implements ImportFileService {
                 }
             }
             if (columnIndex == null) {
-                throw new InvalidPropertiesFormatException("Cant find column with name ["+s+"]");
+                throw new InvalidPropertiesFormatException("Cant find column with name [" + s + "]");
             } else {
                 result.put(s, columnIndex);
             }

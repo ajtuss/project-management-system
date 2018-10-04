@@ -33,13 +33,8 @@ public class AppController {
 
     @PostMapping(value = "/import")
     public String submit(@RequestParam("file") MultipartFile file, RedirectAttributes ra) {
-        try {
-            ImportMessage importMessage = fileService.importSpreadsheet(file);
-            ra.addFlashAttribute("message", importMessage);
-
-        } catch (Exception e) {
-            ra.addFlashAttribute("message", new ImportMessage("Błąd pliku. " + e.getMessage()));
-        }
+        ImportMessage importMessage = fileService.importSpreadsheet(file);
+        ra.addFlashAttribute("message", importMessage);
         return "redirect:/import";
     }
 

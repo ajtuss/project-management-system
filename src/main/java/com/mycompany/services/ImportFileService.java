@@ -5,5 +5,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ImportFileService {
 
-    ImportMessage importSpreadsheet(MultipartFile multipartFile) throws Exception;
+    ImportMessage importSpreadsheet(MultipartFile multipartFile);
 }
