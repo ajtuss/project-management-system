@@ -21,6 +21,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Service
@@ -139,10 +140,10 @@ public class ImportFileServiceImpl implements ImportFileService {
     }
 
     private AmountType getAmountFromString(String amountString) {
-        if (amountString.toLowerCase().startsWith("net")) {
+        if (amountString.toLowerCase(Locale.ENGLISH).startsWith("net")) {
             return AmountType.NETTO;
         }
-        if (amountString.toLowerCase().startsWith("bru")) {
+        if (amountString.toLowerCase(Locale.ENGLISH).startsWith("bru")) {
             return AmountType.BRUTTO;
         }
         return null;
