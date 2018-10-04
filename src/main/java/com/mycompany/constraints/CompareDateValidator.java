@@ -21,6 +21,7 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
 
+            boolean result = false;
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
                .addPropertyNode(endDateString).addConstraintViolation();
@@ -28,11 +29,10 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
         try {
             LocalDate startDate = (LocalDate) PropertyUtils.getProperty(value, startDateString);
             LocalDate endDate = (LocalDate) PropertyUtils.getProperty(value, endDateString);
-            return startDate.compareTo(endDate) <= 0;
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException  | NullPointerException e) {
-            e.printStackTrace();
+            result = startDate.compareTo(endDate) <= 0;
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException  | NullPointerException ignore) {
         }
 
-        return false;
+        return result;
     }
 }
