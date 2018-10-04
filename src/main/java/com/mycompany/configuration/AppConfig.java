@@ -60,6 +60,9 @@ public class AppConfig implements WebMvcConfigurer {
         return new ModelMapper();
     }
 
+    /**
+     * Creation multipartResolver
+     */
     @Bean
     public MultipartResolver multipartResolver() {
         return new StandardServletMultipartResolver();

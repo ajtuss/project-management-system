@@ -78,7 +78,7 @@ public class AgreementController {
             model.addAttribute("systems", systems);
             return "editAgreement";
         }
-        agreementService.update(agreement);
+        agreementService.save(agreement);
         return "redirect:/agreements";
     }
 

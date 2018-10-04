@@ -15,6 +15,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of @{@link AgreementService}.
+ * Using @{@link ModelMapper} to transfer object between entity and DTO.
+ * All methods is @{@link Transactional}.
+ */
 @Service
 @Transactional
 public class AgreementServiceImpl implements AgreementService {
@@ -31,18 +36,25 @@ public class AgreementServiceImpl implements AgreementService {
         this.systemRepository = systemRepository;
     }
 
-
+    /**
+     * Method saving param @{@link AgreementDTO} to database and return @{@link AgreementDTO} with saved object.
+     * <p>
+     *
+     * @param agreementDTO
+     * @return @{@link AgreementDTO} with saved object
+     * @throws NullPointerException throw if {@link AgreementDTO#systemId} or {@link AgreementDTO#systemName} is null
+     */
     @Override
-    public AgreementDTO save(AgreementDTO agreementDTO) {
+    public AgreementDTO save(AgreementDTO agreementDTO) throws NullPointerException{
         logger.info("Call save()");
         Agreement agreement = mapper.map(agreementDTO, Agreement.class);
-        Optional<System> system;
+        Optional<System> system = Optional.empty();
         if (agreementDTO.getSystemName() != null) {
             system = systemRepository.findByNameIgnoreCase(agreementDTO.getSystemName());
-        } else {
+        } else if(agreementDTO.getSystemId() != null) {
             system = systemRepository.findById(agreementDTO.getSystemId());
         }
-        agreement.setSystem(system.orElse(null));
+        agreement.setSystem(system.orElseThrow(() -> new NullPointerException("System is null or not found")));
         Agreement save = agreementRepository.save(agreement);
         return mapper.map(save, AgreementDTO.class);
     }
@@ -81,11 +93,5 @@ public class AgreementServiceImpl implements AgreementService {
         return mapper.map(agreement, AgreementDTO.class);
     }
 
-    @Override
-    public AgreementDTO update(AgreementDTO agreement) {
-        logger.info("Call update()");
-
-        return save(agreement);
-    }
 
 }
