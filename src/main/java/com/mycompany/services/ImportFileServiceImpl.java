@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Validator;
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -37,21 +36,22 @@ public class ImportFileServiceImpl implements ImportFileService {
     }
 
     @Override
-    public ImportMessage importSpreadsheet(@NotNull MultipartFile multipartFile) throws IOException {
+    public ImportMessage importSpreadsheet(@NotNull MultipartFile multipartFile) throws Exception {
 
         Workbook workbook = new XSSFWorkbook(multipartFile.getInputStream());
         Sheet sheet = workbook.getSheetAt(0);
 
         List<AgreementDTO> listAgreements = getListAgreementsFromSheet(sheet);
 
-        List<AgreementDTO> addedAgreements = listAgreements.stream()
-                                                           .filter(agreementDTO -> validator.validate(agreementDTO)
-                                                                                            .isEmpty())
-                                                           .map(agreementService::save)
-                                                           .collect(Collectors.toList());
+        List<AgreementDTO> filteredAgreements = listAgreements.stream()
+                                                              .filter(agreementDTO -> validator.validate(agreementDTO)
+                                                                                               .isEmpty())
+                                                              .collect(Collectors.toList());
 
-        return new ImportMessage(addedAgreements.size(),
-                listAgreements.size() - addedAgreements.size(), null);
+        List<AgreementDTO> savedAgreements = agreementService.save(filteredAgreements);
+
+        return new ImportMessage(savedAgreements.size(),
+                listAgreements.size() - savedAgreements.size(), null);
     }
 
     private List<AgreementDTO> getListAgreementsFromSheet(Sheet sheet) {
