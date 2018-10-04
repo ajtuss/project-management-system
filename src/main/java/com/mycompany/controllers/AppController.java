@@ -38,7 +38,7 @@ public class AppController {
             ra.addFlashAttribute("message", importMessage);
 
         } catch (Exception e) {
-            ra.addFlashAttribute("message", new ImportMessage("Błąd pliku"));
+            ra.addFlashAttribute("message", new ImportMessage("Błąd pliku. " + e.getMessage()));
         }
         return "redirect:/import";
     }
