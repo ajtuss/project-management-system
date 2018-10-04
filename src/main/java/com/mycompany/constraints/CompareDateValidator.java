@@ -10,6 +10,7 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
 
     String startDateString;
     String endDateString;
+
     @Override
     public void initialize(CompareDate pastThen) {
         startDateString = pastThen.startDate();
@@ -18,12 +19,18 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
 
     @Override
     public boolean isValid(Object value, ConstraintValidatorContext context) {
+
+        context.disableDefaultConstraintViolation();
+        context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
+               .addPropertyNode(endDateString).addConstraintViolation();
+
         try {
             LocalDate startDate = (LocalDate) PropertyUtils.getProperty(value, startDateString);
             LocalDate endDate = (LocalDate) PropertyUtils.getProperty(value, endDateString);
             return endDate.isAfter(startDate);
         } catch (Exception ignore) {
         }
+
         return false;
     }
 }
