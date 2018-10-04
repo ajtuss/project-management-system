@@ -35,7 +35,7 @@ public class SystemExistValidator implements ConstraintValidator<SystemExist, Ag
                 return systemRepository.existsByName(nameValue);
             }
 
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | NullPointerException e) {
             e.printStackTrace();
         }
         return false;
