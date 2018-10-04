@@ -13,7 +13,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = UniqueNameValidator.class)
 public @interface UniqueName {
 
-    String message() default "Name must be unique";
+    String message() default "{constraints.UniqueName.message}";
 
     Class<?>[] groups() default {};
 

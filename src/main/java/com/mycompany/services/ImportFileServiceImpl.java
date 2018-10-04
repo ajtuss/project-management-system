@@ -95,7 +95,7 @@ public class ImportFileServiceImpl implements ImportFileService {
                 }
             }
             if (columnIndex == null) {
-                throw new InvalidPropertiesFormatException("Cant find column with name [" + s + "]");
+                throw new InvalidPropertiesFormatException("Nie można znaleźć kolumny o nazwie [" + s + "]");
             } else {
                 result.put(s, columnIndex);
             }

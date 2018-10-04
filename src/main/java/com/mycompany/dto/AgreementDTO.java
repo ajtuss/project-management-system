@@ -26,7 +26,7 @@ public class AgreementDTO {
 
     private String systemName;
 
-    @Size(min = 3, max = 255)
+    @Size(min = 3, max = 255, message = "{constraints.OrderNumberSize.message}")
     private String orderNumber;
 
     @NotNull

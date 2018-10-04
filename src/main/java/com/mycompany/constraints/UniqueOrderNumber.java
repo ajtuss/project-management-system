@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface UniqueOrderNumber {
 
-    String message() default "Order Number must be unique";
+    String message() default "{constraints.OrderNumber.message}";
 
     Class<?>[] groups() default {};
 

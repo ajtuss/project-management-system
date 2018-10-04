@@ -16,7 +16,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface SystemExist {
 
-    String message() default "{System must exist}";
+    String message() default "{constraints.SystemExist.message}";
 
     Class<?>[] groups() default {};
 

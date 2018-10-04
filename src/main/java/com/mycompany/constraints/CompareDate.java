@@ -15,7 +15,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 public @interface CompareDate {
 
-    String message() default "Message";
+    String message() default "{constraints.CompareDate.message}";
 
     Class<?>[] groups() default {};
 
