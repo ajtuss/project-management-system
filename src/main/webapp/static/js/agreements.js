@@ -34,8 +34,30 @@ $(function () {
         select: true,
         columnDefs: [
             {
-                "targets": [0],
-                "visible": false
+                targets: [0],
+                visible: false
+            },
+            {
+                targets: [6],
+                render: function (data, type, row) {
+                    switch (data){
+                        case 'month':
+                            return 'miesięcznie';
+                        case 'quarter':
+                            return 'kawartalnie';
+                        case 'year':
+                            return 'rocznie';
+                        default:
+                            return data;
+                    }
+                }
+            },
+            {
+                targets: [7],
+                render: function (data, type, row) {
+                    return (data === 'true') ? '<span class="glyphicon glyphicon-ok"></span>' :
+                        '<span class="glyphicon glyphicon-remove"></span>';
+                }
             }]
     });
 
