@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class CompareDateValidator implements ConstraintValidator<CompareDate, Object> {
 
-    String startDateString;
-    String endDateString;
+    private String startDateString;
+    private String endDateString;
 
     @Override
     public void initialize(CompareDate pastThen) {
@@ -28,7 +28,7 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
         try {
             LocalDate startDate = (LocalDate) PropertyUtils.getProperty(value, startDateString);
             LocalDate endDate = (LocalDate) PropertyUtils.getProperty(value, endDateString);
-            return endDate.isAfter(startDate);
+            return startDate.compareTo(endDate) <= 0;
         } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException  | NullPointerException e) {
             e.printStackTrace();
         }
