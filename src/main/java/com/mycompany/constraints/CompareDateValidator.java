@@ -29,7 +29,7 @@ public class CompareDateValidator implements ConstraintValidator<CompareDate, Ob
             LocalDate startDate = (LocalDate) PropertyUtils.getProperty(value, startDateString);
             LocalDate endDate = (LocalDate) PropertyUtils.getProperty(value, endDateString);
             return endDate.isAfter(startDate);
-        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException  | NullPointerException e) {
             e.printStackTrace();
         }
 
