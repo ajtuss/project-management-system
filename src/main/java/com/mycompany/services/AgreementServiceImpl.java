@@ -45,6 +45,12 @@ public class AgreementServiceImpl implements AgreementService {
     }
 
     @Override
+    public List<AgreementDTO> save(List<AgreementDTO> listAgreements) {
+        return listAgreements.stream().map(this::save)
+                             .collect(Collectors.toList());
+    }
+
+    @Override
     public List<AgreementDTO> getAll() {
         List<Agreement> agreements = agreementRepository.findAll();
         return agreements.stream()
@@ -58,12 +64,6 @@ public class AgreementServiceImpl implements AgreementService {
         return agreements.stream()
                          .map(agreement -> mapper.map(agreement, AgreementDTO.class))
                          .collect(Collectors.toList());
-    }
-
-    @Override
-    public List<AgreementDTO> save(List<AgreementDTO> listAgreements) {
-        return listAgreements.stream().map(this::save)
-                             .collect(Collectors.toList());
     }
 
     @Override
