@@ -3,6 +3,7 @@ package com.mycompany.configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -19,19 +20,35 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.mycompany.repositories")
-@PropertySource({"classpath:hibernate.properties"})
 public class HibernateConfig {
 
+    private final Environment env;
+
     @Autowired
-    private Environment env;
+    public HibernateConfig(Environment env) {
+        this.env = env;
+    }
+
+    @Configuration
+    @Profile("!prod")
+    @PropertySource("classpath:hibernate.properties")
+    static class Defaults {
+    }
+
+    @Configuration
+    @Profile("prod")
+    @PropertySource({"classpath:hibernate-prod.properties"})
+    static class Production {
+    }
+
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getProperty("jdbc.driverClassName"));
-        dataSource.setUrl(env.getProperty("jdbc.url"));
-        dataSource.setUsername(env.getProperty("jdbc.user"));
-        dataSource.setPassword(env.getProperty("jdbc.pass"));
+        dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
+        dataSource.setUrl(env.getRequiredProperty("jdbc.url"));
+        dataSource.setUsername(env.getRequiredProperty("jdbc.user"));
+        dataSource.setPassword(env.getRequiredProperty("jdbc.pass"));
         return dataSource;
     }
 
