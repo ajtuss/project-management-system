@@ -53,7 +53,7 @@ Aby uruchmić za pomocą docker-compose wykonaj (nie potrzeba konfigurować bazy
 docker-compose up
 ```
 
-
+Działąjąca aplikacja powinna być dostępna pod adresem [localhost:8080](http://localhost:8080)
 
 ## Author
 
