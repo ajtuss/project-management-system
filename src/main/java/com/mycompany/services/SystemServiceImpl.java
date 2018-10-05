@@ -12,6 +12,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of {@link SystemService}
+ */
 @Service
 @Transactional
 public class SystemServiceImpl implements SystemService {
@@ -26,6 +29,11 @@ public class SystemServiceImpl implements SystemService {
         this.mapper = mapper;
     }
 
+    /**
+     * Save the @param in database and return {@link SystemDTO} with saved data.
+      * @param systemDTO {@link SystemDTO} to save in database. Must be validated before save.
+     * @return SystemDTO saved in database.
+     */
     @Override
     public SystemDTO save(SystemDTO systemDTO) {
         logger.info("Call save()");
@@ -35,32 +43,31 @@ public class SystemServiceImpl implements SystemService {
         return mapper.map(save, SystemDTO.class);
     }
 
+    /**
+     * Method return List of {@link SystemDTO} with all entities from database
+     * @return List of {@link SystemDTO} with all entities from database
+     */
     @Override
     public List<SystemDTO> getAll() {
         logger.info("Call getAll()");
 
         List<System> systems = systemRepository.findAll();
-        List<SystemDTO> result = systems.stream()
-                                        .map(system -> mapper.map(system, SystemDTO.class))
-                                        .collect(Collectors.toList());
-        return result;
+        return systems.stream()
+                      .map(system -> mapper.map(system, SystemDTO.class))
+                      .collect(Collectors.toList());
     }
 
+    /**
+     * Method return {@link SystemDTO} with founded entity in database
+     * @param id id of searching {@link SystemDTO}
+     * @return SystemDTO with founded entity in database
+     */
     @Override
     public SystemDTO findById(Long id) {
         logger.info("Call findById()");
 
         System system = systemRepository.findById(id).orElse(new System());
         return mapper.map(system, SystemDTO.class);
-    }
-
-    @Override
-    public SystemDTO update(SystemDTO systemDTO) {
-        logger.info("Call update()");
-
-        System system = mapper.map(systemDTO, System.class);
-        System save = systemRepository.save(system);
-        return mapper.map(save, SystemDTO.class);
     }
 
 }

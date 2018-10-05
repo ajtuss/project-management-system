@@ -24,6 +24,11 @@ import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * Implementation of {@link ImportFileService}
+ *<p>
+ * Class needed import.properties file in resources with name of headers converted file.
+ */
 @Service
 @PropertySource("classpath:import.properties")
 public class ImportFileServiceImpl implements ImportFileService {
@@ -102,9 +107,9 @@ public class ImportFileServiceImpl implements ImportFileService {
      */
     private Map<String, Integer> getHeaderMapFromRow(Row row) throws InvalidPropertiesFormatException {
         Map<String, Integer> result = new HashMap<>();
-        List<String> headersList = Arrays.asList(env.getProperty("system"), env.getProperty("orderNumber"),
-                env.getProperty("fromDate"), env.getProperty("toDate"), env.getProperty("amount"),
-                env.getProperty("amountType"), env.getProperty("amountPeriod"), env.getProperty("active"));
+        List<String> headersList = Arrays.asList(env.getRequiredProperty("system"), env.getRequiredProperty("orderNumber"),
+                env.getRequiredProperty("fromDate"), env.getRequiredProperty("toDate"), env.getRequiredProperty("amount"),
+                env.getRequiredProperty("amountType"), env.getRequiredProperty("amountPeriod"), env.getRequiredProperty("active"));
         for (String s : headersList) {
             Integer columnIndex = null;
             Iterator<Cell> cellIterator = row.cellIterator();
@@ -134,35 +139,35 @@ public class ImportFileServiceImpl implements ImportFileService {
         AgreementDTO agreementDTO = new AgreementDTO();
 
         try {
-            String systemName = getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("system"))));
+            String systemName = getStringValueFromCell(row.getCell(headerMap.get(env.getRequiredProperty("system"))));
             agreementDTO.setSystemName(systemName);
 
-            agreementDTO.setOrderNumber(getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("orderNumber")))));
+            agreementDTO.setOrderNumber(getStringValueFromCell(row.getCell(headerMap.get(env.getRequiredProperty("orderNumber")))));
 
-            LocalDate startDate = row.getCell(headerMap.get(env.getProperty("fromDate")))
+            LocalDate startDate = row.getCell(headerMap.get(env.getRequiredProperty("fromDate")))
                                      .getDateCellValue()
                                      .toInstant()
                                      .atZone(ZoneId.systemDefault())
                                      .toLocalDate();
             agreementDTO.setStartDate(startDate);
 
-            LocalDate endDate = row.getCell(headerMap.get(env.getProperty("toDate")))
+            LocalDate endDate = row.getCell(headerMap.get(env.getRequiredProperty("toDate")))
                                    .getDateCellValue()
                                    .toInstant()
                                    .atZone(ZoneId.systemDefault())
                                    .toLocalDate();
             agreementDTO.setEndDate(endDate);
 
-            BigDecimal amount = new BigDecimal(getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("amount")))));
+            BigDecimal amount = new BigDecimal(getStringValueFromCell(row.getCell(headerMap.get(env.getRequiredProperty("amount")))));
             agreementDTO.setAmount(amount);
 
-            String amountTypeString = getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("amountType"))));
+            String amountTypeString = getStringValueFromCell(row.getCell(headerMap.get(env.getRequiredProperty("amountType"))));
             agreementDTO.setAmountType(getAmountTypeFromString(amountTypeString));
 
-            String amountPeriodString = getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("amountPeriod"))));
+            String amountPeriodString = getStringValueFromCell(row.getCell(headerMap.get(env.getRequiredProperty("amountPeriod"))));
             agreementDTO.setAmountPeriod(getAmountPeriodFromString(amountPeriodString));
 
-            String activeString = getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("active"))));
+            String activeString = getStringValueFromCell(row.getCell(headerMap.get(env.getRequiredProperty("active"))));
             agreementDTO.setActive(Boolean.valueOf(activeString));
 
 
