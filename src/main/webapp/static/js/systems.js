@@ -2,6 +2,7 @@ $(function () {
 
     var systemsTable = $("#systems");
 
+    var contextPath = $('body').data('path');
 
     systemsTable.DataTable({
         initComplete: function () {
@@ -13,14 +14,14 @@ $(function () {
             {
                 text: 'Dodaj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/systems/add';
+                    window.location.href = contextPath + '/systems/add';
                 }
             },
             {
                 extend: 'selectedSingle',
                 text: 'Edytuj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/systems/edit?id=' + dt.row({selected: true}).data()[0];
+                    window.location.href = contextPath + '/systems/edit?id=' + dt.row({selected: true}).data()[0];
                 }
             }
         ],

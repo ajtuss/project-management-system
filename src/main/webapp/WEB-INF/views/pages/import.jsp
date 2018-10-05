@@ -7,7 +7,7 @@
 
 <div class="row">
 
-    <form method="POST" action="/import" enctype="multipart/form-data" class="col-md-7">
+    <form method="POST" action="${pageContext.request.contextPath}/import" enctype="multipart/form-data" class="col-md-7">
         <!-- COMPONENT START -->
         <div class="form-group">
             <input type="file" class="control-label" name="file"

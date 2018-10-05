@@ -2,6 +2,8 @@ $(function () {
 
     var agreementsTable = $("#agreement");
 
+    var contextPath = $('body').data('path');
+
 
     agreementsTable.DataTable({
         initComplete: function () {
@@ -13,20 +15,20 @@ $(function () {
             {
                 text: 'Dodaj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/agreements/add';
+                    window.location.href = contextPath + '/agreements/add';
                 }
             },
             {
                 extend: 'selectedSingle',
                 text: 'Edytuj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/agreements/edit?id=' + dt.row({selected: true}).data()[0];
+                    window.location.href = contextPath +'agreements/edit?id=' + dt.row({selected: true}).data()[0];
                 }
             },
             {
                 text: 'Importuj',
                 action: function (e, dt, button, config) {
-                    window.location.href = '/import';
+                    window.location.href = contextPath + '/import';
                 }
             }
         ],

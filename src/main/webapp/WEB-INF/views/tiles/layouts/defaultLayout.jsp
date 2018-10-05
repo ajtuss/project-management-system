@@ -21,7 +21,7 @@
     <%--end stylesheets--%>
 </head>
 
-<body>
+<body data-path="${pageContext.request.contextPath}">
 
 <section id="topmenu">
     <tiles:insertAttribute name="menu"/>
