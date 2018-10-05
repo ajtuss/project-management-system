@@ -22,7 +22,7 @@ $(function () {
                 extend: 'selectedSingle',
                 text: 'Edytuj',
                 action: function (e, dt, button, config) {
-                    window.location.href = contextPath +'agreements/edit?id=' + dt.row({selected: true}).data()[0];
+                    window.location.href = contextPath +'/agreements/edit?id=' + dt.row({selected: true}).data()[0];
                 }
             },
             {
