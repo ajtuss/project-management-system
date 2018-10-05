@@ -31,8 +31,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     /**
      * Set character encoding filter
-     *
-     * @return
+     * @return Arrays of {@link Filter}
      */
     @Override
     protected Filter[] getServletFilters() {
@@ -44,8 +43,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
     /**
      * Set multipart configuration for servlet
-     *
-     * @param registration
+     * @param registration {@link ServletRegistration}
      */
     @Override
     protected void customizeRegistration(ServletRegistration.Dynamic registration) {

@@ -40,8 +40,8 @@ public class AgreementServiceImpl implements AgreementService {
      * Method saving param @{@link AgreementDTO} to database and return @{@link AgreementDTO} with saved object.
      * <p>
      *
-     * @param agreementDTO
-     * @return @{@link AgreementDTO} with saved object
+     * @param agreementDTO {@link AgreementDTO} to save in database
+     * @return {@link AgreementDTO} with saved object
      * @throws NullPointerException throw if {@link AgreementDTO#systemId} or {@link AgreementDTO#systemName} is null
      */
     @Override

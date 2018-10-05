@@ -25,6 +25,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     /**
      * Configure TilesConfigurer.
+     * @return {@link TilesConfigurer}
      */
     @Bean
     public TilesConfigurer tilesConfigurer() {
@@ -53,7 +54,8 @@ public class AppConfig implements WebMvcConfigurer {
     }
 
     /**
-     * Creation ModelMapper Bean
+     * Creation @{@link org.springframework.ui.ModelMap} Bean
+     * @return {@link ModelMapper}
      */
     @Bean
     public ModelMapper modelMapper() {
@@ -62,6 +64,7 @@ public class AppConfig implements WebMvcConfigurer {
 
     /**
      * Creation multipartResolver
+     * @return MultipartResolver
      */
     @Bean
     public MultipartResolver multipartResolver() {

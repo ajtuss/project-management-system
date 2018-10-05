@@ -29,15 +29,15 @@ public interface AgreementService {
     List<AgreementDTO> getAllActive();
 
     /**
-     * Save param agreementDTO in database and return AgreementDTO with filled fields.
-     * @param agreementDTO
-     * @return
+     * Save param agreementDTO in database and return AgreementDTO with saved entity.
+     * @param agreementDTO to save in database
+     * @return AgreementDTO saved in database
      */
     AgreementDTO save(AgreementDTO agreementDTO);
 
     /**
      * Save List of AgreementDTOs in database and return List of AgreementDTO with filled fields.
-     * @param listAgreements
+     * @param listAgreements List of {@link AgreementDTO} to save in database
      * @return List of AgreementDTO with filled fields
      */
     List<AgreementDTO> save(List<AgreementDTO> listAgreements);
