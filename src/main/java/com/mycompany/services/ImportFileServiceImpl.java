@@ -61,7 +61,7 @@ public class ImportFileServiceImpl implements ImportFileService {
 
             result = new ImportMessage(savedAgreements.size(),
                     listAgreements.size() - savedAgreements.size(), null);
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
             result.setMessage("Błąd pliku. " + e.getMessage());
         }
         return result;
