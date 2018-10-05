@@ -1,0 +1,8 @@
+com.mycompany
+com.mycompany.configuration
+com.mycompany.constraints
+com.mycompany.controllers
+com.mycompany.domain
+com.mycompany.dto
+com.mycompany.repositories
+com.mycompany.services
