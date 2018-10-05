@@ -40,6 +40,11 @@ public class ImportFileServiceImpl implements ImportFileService {
         this.env = env;
     }
 
+    /**
+     * Import received file from @{@link org.springframework.stereotype.Controller} and write data to database.
+     * @param multipartFile received from @{@link org.springframework.stereotype.Controller}
+     * @return Object with stats about imported rows.
+     */
     @Override
     public ImportMessage importSpreadsheet(MultipartFile multipartFile) {
         logger.info("Call importSpreadsheet()");
@@ -67,6 +72,12 @@ public class ImportFileServiceImpl implements ImportFileService {
         return result;
     }
 
+    /**
+     * Method getting first row as header, and convert other rows to List of {@link AgreementDTO}
+     * @param sheet of .xml document
+     * @return List of {@link AgreementDTO} with data from sheet
+     * @throws InvalidPropertiesFormatException delegate exception from getHeaderMapFromRow()
+     */
     private List<AgreementDTO> getListAgreementsFromSheet(Sheet sheet) throws InvalidPropertiesFormatException {
         ArrayList<AgreementDTO> result = new ArrayList<>();
         Map<String, Integer> headerMap = null;
@@ -83,6 +94,12 @@ public class ImportFileServiceImpl implements ImportFileService {
         return result;
     }
 
+    /**
+     * Method scan row and searching column headers.
+     * @param row with headers
+     * @return Map with column name key and index of column.
+     * @throws InvalidPropertiesFormatException if any column not found.
+     */
     private Map<String, Integer> getHeaderMapFromRow(Row row) throws InvalidPropertiesFormatException {
         Map<String, Integer> result = new HashMap<>();
         List<String> headersList = Arrays.asList(env.getProperty("system"), env.getProperty("orderNumber"),
@@ -107,6 +124,12 @@ public class ImportFileServiceImpl implements ImportFileService {
         return result;
     }
 
+    /**
+     * Method transfer @{@link Row} to @{@link AgreementDTO}.
+     * @param row Data to convert
+     * @param headerMap {@link Map} with column name and column number
+     * @return AgreementDTO with converted data. If column contains incorrect data, return empty Object
+     */
     private AgreementDTO getAgreementFromRow(Row row, Map<String, Integer> headerMap) {
         AgreementDTO agreementDTO = new AgreementDTO();
 
@@ -134,7 +157,7 @@ public class ImportFileServiceImpl implements ImportFileService {
             agreementDTO.setAmount(amount);
 
             String amountTypeString = getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("amountType"))));
-            agreementDTO.setAmountType(getAmountFromString(amountTypeString));
+            agreementDTO.setAmountType(getAmountTypeFromString(amountTypeString));
 
             String amountPeriodString = getStringValueFromCell(row.getCell(headerMap.get(env.getProperty("amountPeriod"))));
             agreementDTO.setAmountPeriod(getAmountPeriodFromString(amountPeriodString));
@@ -149,6 +172,11 @@ public class ImportFileServiceImpl implements ImportFileService {
         return agreementDTO;
     }
 
+    /**
+     * Convert @{@link Cell} to @{@link String} value recognizing type of cell.
+     * @param cell cell with data to convert.
+     * @return String with value from cell
+     */
     private String getStringValueFromCell(Cell cell) {
         switch (cell.getCellType()) {
             case STRING:
@@ -162,6 +190,11 @@ public class ImportFileServiceImpl implements ImportFileService {
         }
     }
 
+    /**
+     * Transfer string with Amount Period to {@link Period} enum.
+     * @param amountPeriodString {@link String} with amount period to convert
+     * @return Period
+     */
     private Period getAmountPeriodFromString(String amountPeriodString) {
         if ("month".equalsIgnoreCase(amountPeriodString)) {
             return Period.MONTH;
@@ -175,7 +208,12 @@ public class ImportFileServiceImpl implements ImportFileService {
         return null;
     }
 
-    private AmountType getAmountFromString(String amountString) {
+    /**
+     * Transfer string with Amount Type to {@link AmountType} enum.
+     * @param amountString {@link String} with amount type to convert.
+     * @return AmountType
+     */
+    private AmountType getAmountTypeFromString(String amountString) {
         if (amountString.toLowerCase(Locale.ENGLISH).startsWith("net")) {
             return AmountType.NETTO;
         }
