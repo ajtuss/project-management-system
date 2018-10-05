@@ -4,11 +4,14 @@ import com.mycompany.dto.AgreementDTO;
 
 import java.util.List;
 
+/**
+ * Interface for {@link com.mycompany.domain.Agreement} Service
+ */
 public interface AgreementService {
 
     /**
      * Return AgreementDTO found in database with id
-     * @param id
+     * @param id id of searching {@link AgreementDTO}
      * @return AgreementDTO
      */
     AgreementDTO findById(Long id);

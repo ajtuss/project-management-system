@@ -4,6 +4,9 @@ import com.mycompany.dto.SystemDTO;
 
 import java.util.List;
 
+/**
+ * Interface for {@link com.mycompany.domain.System} Service
+ */
 public interface SystemService {
 
     /**

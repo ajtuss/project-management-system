@@ -56,7 +56,7 @@ public class SystemController {
         if (result.hasErrors()) {
             return "editSystem";
         }
-        systemService.update(system);
+        systemService.save(system);
         return "redirect:/systems";
     }
 }

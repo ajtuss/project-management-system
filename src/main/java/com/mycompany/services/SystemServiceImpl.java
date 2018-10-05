@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of {@link SystemService}
+ * Implementation of {@link SystemService} interface.
  */
 @Service
 @Transactional

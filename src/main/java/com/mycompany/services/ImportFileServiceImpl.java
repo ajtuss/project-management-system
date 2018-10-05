@@ -25,7 +25,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of {@link ImportFileService}
+ * Implementation of {@link ImportFileService} interface.
  *<p>
  * Class needed import.properties file in resources with name of headers converted file.
  */

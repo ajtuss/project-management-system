@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
- * Implementation of @{@link AgreementService}.
+ * Implementation of {@link AgreementService} interface.
  * Using @{@link ModelMapper} to transfer object between entity and DTO.
  * All methods is @{@link Transactional}.
  */
