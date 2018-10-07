@@ -4,14 +4,15 @@ import com.mycompany.domain.ImportMessage;
 import com.mycompany.services.ImportFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
-@RequestMapping("/")
 public class AppController {
 
     private final ImportFileService fileService;
@@ -21,13 +22,13 @@ public class AppController {
         this.fileService = fileService;
     }
 
-    @RequestMapping(value = {"/"}, method = RequestMethod.GET)
-    public String homePage(ModelMap model) {
+    @GetMapping("/")
+    public String homePage() {
         return "home";
     }
 
-    @RequestMapping(value = {"/contactus"}, method = RequestMethod.GET)
-    public String contactUsPage(ModelMap model) {
+    @GetMapping("/contactus")
+    public String contactUsPage() {
         return "contactus";
     }
 
