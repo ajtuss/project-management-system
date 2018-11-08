@@ -1,59 +1,59 @@
 # Project Management System
 
-Aplikacja pomagająca w zarządzaniu wydatkami na obsługę systemów. 
+The application which helps in managing expenses for system support.
 
-## Konfiguracja
+## Configuration
 
-### Baza danych
+### Database
 
-W pliku [src/main/resources/hibernate.properties](src/main/resources/hibernate.properties) znajduje się konfiguracja bazy danych.
+File [src/main/resources/hibernate.properties](src/main/resources/hibernate.properties) contains configuration for connection to database.
 ```
 jdbc.url=jdbc:postgresql://localhost:5432/postgres
 jdbc.user=postgres
 jdbc.pass=pass
 ```
 
-### Import plików
+### File import
 
-Aplikacja pozwala importować pliki `.xslx`.
-W pliku [src/main/resources/import.properties](src/main/resources/import.properties) znajduje się konfiguracja nazw kolumn importowanego pliku.
-W importowanym pliku nagłówki kolumn muszą znajdować się w pierwszym wierszu. Kolejność wierszy nie ma znaczenia.
+The app allows to import files with extension `.xslx`.
+File [src/main/resources/import.properties](src/main/resources/import.properties) contains configuration about column names from imported file.
+The column names will be in first line of file. The order of the columns does not matter.
 
-### Logowanie komunikatów aplikacji
+### Logging
 
-W pliku [src/main/resources/log4j.properties](src/main/resources/log4j.properties) znajduje się konfiguracja logowania komunikatów.
+File [src/main/resources/log4j.properties](src/main/resources/log4j.properties) contains configuration for logging.
 
-## Budowanie aplikacji
+## Build the app
 
-Przejdź do folderu i wykonaj polecenie:
+Go to the app folder and execute command:
 
 ```
 mvn clean package
 ```
-Po udanej kompilacji i testowaniu wynikowy plik `.war` powinien się pojawić w folderze [target](target).
+If compile and test are successful, the `.war` file will appear in [target](target) directory.
 
 
-## Uruchomienie
+## Start Up
 
-Do poprawnego działania aplikacji wymagana jest uruchomiona baza danych PostgreSQL.
+The running PostgreSQL is needed to start the app.
 
-Aby zainicjalizawać bazę przykładowymi danymi wykonaj polecenie (uaktualnionym o prawidłowe dane):
+To initialize the database with sample data, execute the command(updated with correct data):
 
 ```
 psql -h localhost -p 5432 -U postgres < init.sql
 ```
 
-Deplojować plik `.war` do tomcata.
+Deploy the generated `.war` file to tomcat and run it.
 
-## Uruchomienie za pomocą Docker-Compose
+## Start Up with Docker-Compose
 
-Aby uruchmić za pomocą docker-compose wykonaj (nie potrzeba konfigurować bazy danych):
+For starting the app with docker-compose just execute (The database configuration is unnecessary):
 
 ```
 docker-compose up
 ```
 
-Działąjąca aplikacja powinna być dostępna pod adresem [localhost:8080](http://localhost:8080)
+The running app will be available in [localhost:8080](http://localhost:8080)
 
 ## Author
 
