@@ -3,6 +3,7 @@ package com.mycompany.services;
 import com.mycompany.dto.AgreementDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Interface for {@link com.mycompany.domain.Agreement} Service
@@ -14,7 +15,7 @@ public interface AgreementService {
      * @param id id of searching {@link AgreementDTO}
      * @return AgreementDTO
      */
-    AgreementDTO findById(Long id);
+    Optional<AgreementDTO> findById(Long id);
 
     /**
      * Return all AgreementDTOs found in in database

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/agreements")
@@ -64,8 +65,8 @@ public class AgreementController {
 
     @GetMapping("/edit")
     public String agreementEditPage(@RequestParam Long id, ModelMap model) {
-        AgreementDTO agreement = agreementService.findById(id);
-        model.addAttribute("agreement", agreement);
+        Optional<AgreementDTO> agreement = agreementService.findById(id);
+        model.addAttribute("agreement", agreement.orElseGet(AgreementDTO::new));
         List<SystemDTO> systems = systemService.getAll();
         model.addAttribute("systems", systems);
         return "editAgreement";
