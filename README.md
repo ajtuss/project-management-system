@@ -45,6 +45,13 @@ psql -h localhost -p 5432 -U postgres < init.sql
 
 Deploy the generated `.war` file to tomcat and run it.
 
+### Start PostgreSQL in Docker
+
+To run database in docker execute:
+```
+docker run --name pms-postgres -e POSTGRES_PASSWORD=pass -p 5432:5432 -d postgres
+```
+
 ## Start Up with Docker-Compose
 
 For starting the app with docker-compose just execute (The database configuration is unnecessary):
