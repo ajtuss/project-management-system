@@ -3,6 +3,7 @@ package com.mycompany.services;
 import com.mycompany.dto.SystemDTO;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Interface for {@link com.mycompany.domain.System} Service
@@ -27,6 +28,6 @@ public interface SystemService {
      * @param id id of searching {@link SystemDTO}
      * @return SystemDTO founded in database
      */
-    SystemDTO findById(Long id);
+    Optional<SystemDTO> findById(Long id);
 
 }

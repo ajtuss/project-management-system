@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/systems")
@@ -46,8 +47,8 @@ public class SystemController {
 
     @GetMapping("/edit")
     public String systemEditPage(@RequestParam Long id, ModelMap model) {
-        SystemDTO systemDTO = systemService.findById(id);
-        model.addAttribute("system", systemDTO);
+        Optional<SystemDTO> systemDTO = systemService.findById(id);
+        model.addAttribute("system", systemDTO.orElseGet(SystemDTO::new));
         return "editSystem";
     }
 

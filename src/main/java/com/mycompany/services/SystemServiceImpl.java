@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +32,8 @@ public class SystemServiceImpl implements SystemService {
 
     /**
      * Save the @param in database and return {@link SystemDTO} with saved data.
-      * @param systemDTO {@link SystemDTO} to save in database. Must be validated before save.
+     *
+     * @param systemDTO {@link SystemDTO} to save in database. Must be validated before save.
      * @return SystemDTO saved in database.
      */
     @Override
@@ -45,29 +47,31 @@ public class SystemServiceImpl implements SystemService {
 
     /**
      * Method return List of {@link SystemDTO} with all entities from database
+     *
      * @return List of {@link SystemDTO} with all entities from database
      */
     @Override
     public List<SystemDTO> getAll() {
         logger.info("Call getAll()");
 
-        List<System> systems = systemRepository.findAll();
-        return systems.stream()
-                      .map(system -> mapper.map(system, SystemDTO.class))
-                      .collect(Collectors.toList());
+        return systemRepository.findAll()
+                               .stream()
+                               .map(system -> mapper.map(system, SystemDTO.class))
+                               .collect(Collectors.toList());
     }
 
     /**
      * Method return {@link SystemDTO} with founded entity in database
+     *
      * @param id id of searching {@link SystemDTO}
-     * @return SystemDTO with founded entity in database
+     * @return Optional of SystemDTO with founded entity in database
      */
     @Override
-    public SystemDTO findById(Long id) {
+    public Optional<SystemDTO> findById(Long id) {
         logger.info("Call findById()");
 
-        System system = systemRepository.findById(id).orElse(new System());
-        return mapper.map(system, SystemDTO.class);
+        return systemRepository.findById(id)
+                               .map(system -> mapper.map(system, SystemDTO.class));
     }
 
 }
